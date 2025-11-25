@@ -1,22 +1,20 @@
 <!DOCTYPE html>
 <html lang="en" class="h-full">
 <head>
-<head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>{% block title %}EchoLearn{% endblock %} • Smart Review</title>
+  <title>{% block title %}EchoLearn{% endblock %}</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/lucide/0.263.1/lucide.min.css" rel="stylesheet">
-  <script src="https://unpkg.com/lucide@latest"></script>
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
   <style>
-    .lucide { width: 20px; height:20px; }
+    [data-lucide] { width: 1.25rem; height: 1.25rem; }
+    @media (min-width: 768px) {
+      [data-lucide] { width: 1.4rem; height: 1.4rem; }
+    }
   </style>
 </head>
-<body class="min-h-screen bg-stone-50 text-gray-900 flex">
+<body class="min-h-screen bg-stone-50 text-gray-900 flex flex-col">
   {% block content %}{% endblock %}
-
-  <script>
-    lucide.createIcons();
-  </script>
+  <script>lucid.createIcons();</script>
 </body>
 </html>
