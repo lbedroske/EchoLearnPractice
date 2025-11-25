@@ -3,14 +3,56 @@
 
 {% block content %}
 <div class="flex-1 p-8 bg-stone-50 min-h-screen">
-  <div class="max-w-2xl mx-auto text-center pt-20">
-    <i data-lucide="construction" class="w-24 h-24 text-amber-500 mx-auto mb-6"></i>
-    <h1 class="text-4xl font-bold text-gray-800 mb-4">Review Topics</h1>
-    <p class="text-xl text-gray-600 mb-8">This page is being rebuilt with the new design</p>
-    <p class="text-gray-500">It’ll be beautiful — coming soon!</p>
-    <a href="/" class="inline-block mt-10 px-8 py-4 bg-amber-600 text-white rounded-full font-bold hover:bg-amber-700 transition text-lg">
-      ← Back to Dashboard
-    </a>
+  <div class="max-w-4xl mx-auto">
+    <h1 class="text-4xl font-bold text-gray-800 mb-8">Review Topics</h1>
+
+    {% if topics|length > 0 %}
+      <div class="space-y-6">
+        {% for topic in topics %}
+        <div class="bg-white rounded-2xl shadow-lg p-8 hover:shadow-xl transition">
+          <h3 class="text-2xl font-bold text-gray-800 mb-3">{{ topic.title }}</h3>
+          {% if topic.description %}
+            <p class="text-gray-600 mb-6 leading-relaxed">{{ topic.description }}</p>
+          {% else %}
+            <p class="text-gray-400 italic mb-6">No description added yet</p>
+          {% endif %}
+
+          <div class="flex flex-wrap gap-4">
+            <form action="/review/{{ topic.id }}/good" method="POST" class="inline">
+              <button class="px-8 py-4 bg-emerald-500 text-white rounded-full font-bold hover:bg-emerald-600 transition">
+                Good
+              </button>
+            </form>
+            <form action="/review/{{ topic.id }}/again" method="POST" class="inline">
+              <button class="px-8 py-4 bg-red-500 text-white rounded-full font-bold hover:bg-red-600 transition">
+                Again
+              </button>
+            </form>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    {% else %}
+      <div class="text-center pt-20">
+        <i data-lucide="check-circle" class="w-28 h-28 text-emerald-500 mx-auto mb-8"></i>
+        <h2 class="text-3xl font-bold text-gray-800 mb-4">You're All Caught Up!</h2>
+        <p class="text-xl text-gray-600">Nothing to review today — great job staying consistent!</p>
+        <p class="text-gray-500 mt-4">Come back tomorrow or add a new topic.</p>
+        <a href="/" class="inline-block mt-10 px-8 py-4 bg-emerald-600 text-white rounded-full font-bold hover:bg-emerald-700 transition text-lg">
+          Back to Dashboard
+        </a>
+      </div>
+    {% endif %}
+
+    {% if error_message %}
+      <div class="text-center pt-20">
+        <i data-lucide="smile" class="w-24 h-24 text-amber-500 mx-auto mb-6"></i>
+        <p class="text-xl text-gray-600">{{ error_message }}</p>
+        <a href="/" class="inline-block mt-8 px-8 py-4 bg-amber-600 text-white rounded-full font-bold hover:bg-amber-700 transition">
+          Back to Dashboard
+        </a>
+      </div>
+    {% endif %}
   </div>
 </div>
 {% endblock %}
