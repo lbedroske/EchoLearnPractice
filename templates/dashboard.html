@@ -3,7 +3,7 @@
 
 {% block content %}
 <div class="flex flex-1">
-  <!-- Sidebar (desktop) -->
+  <!-- Desktop Sidebar -->
   <aside class="hidden md:flex w-64 flex-col bg-white border-r border-amber-100">
     <div class="p-6 border-b border-amber-100">
       <div class="flex items-center gap-3">
@@ -28,61 +28,4 @@
           <i data-lucide="eye"></i> Review Topics
         </a></li>
         <li><a href="/classes" class="flex items-center gap-3 px-4 py-3 hover:bg-amber-50 rounded-lg transition opacity-60">
-          <i data-lucide="folders"></i> My Classes (soon)
-        </a></li>
-      </ul>
-    </nav>
-  </aside>
-
-  <!-- Main Content -->
-  <main class="flex-1 p-6 md:p-12">
-    <!-- Mobile Header -->
-    <div class="md:hidden flex items-center justify-between mb-8">
-      <button onclick="document.getElementById('mobile-menu').classList.toggle('hidden')" class="p-2 rounded-lg hover:bg-amber-50">
-        <i data-lucide="menu" class="w-8 h-8"></i>
-      </button>
-      <h1 class="text-2xl font-bold">EchoLearn</h1>
-    </div>
-
-    <!-- 2x2 Grid -->
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-      <a href="/enter-topic" class="group block p-10 bg-gradient-to-br from-cyan-500 to-blue-600 rounded-2xl shadow-xl text-white hover:shadow-2xl transition">
-        <i data-lucide="calendar-plus" class="w-14 h-14 mb-4"></i>
-        <h3 class="text-2xl font-bold mb-2">Enter New Topic</h3>
-        <p class="opacity-90">Log today’s concept for spaced review</p>
-      </a>
-
-      <a href="/review-scheduled-topics" class="group block p-10 bg-gradient-to-br from-orange-500 to-red-600 rounded-2xl shadow-xl text-white hover:shadow-2xl transition">
-        <i data-lucide="eye" class="w-14 h-14 mb-4"></i>
-        <h3 class="text-2xl font-bold mb-2">Review Topics</h3>
-        <p class="opacity-90">Practice what’s due today</p>
-      </a>
-
-      <a href="/enter-missing-topic" class="group block p-10 bg-gradient-to-br from-emerald-500 to-teal-600 rounded-2xl shadow-xl text-white hover:shadow-2xl transition">
-        <i data-lucide="clock" class="w-14 h-14 mb-4"></i>
-        <h3 class="text-2xl font-bold mb-2">Add Past Topic</h3>
-        <p class="opacity-90">Backfill a missed concept</p>
-      </a>
-
-      <a href="/classes" class="group block p-10 bg-gradient-to-br from-purple-600 to-pink-600 rounded-2xl shadow-xl text-white hover:shadow-2xl transition opacity-75">
-        <i data-lucide="folders" class="w-14 h-14 mb-4"></i>
-        <h3 class="text-2xl font-bold mb-2">My Classes</h3>
-        <p class="opacity-90">Manage multiple classes — <strong>Coming Soon</strong></p>
-      </a>
-    </div>
-  </main>
-</div>
-
-<!-- Mobile Menu -->
-<div id="mobile-menu" class="fixed inset-0 bg-black/50 z-50 hidden md:hidden" onclick="this.classList.add('hidden')">
-  <div class="bg-white w-72 h-full p-6" onclick="event.stopPropagation()">
-    <h2 class="font-bold text-xl mb-8">EchoLearn</h2>
-    <ul class="space-y-4 text-lg">
-      <li><a href="/" class="flex items-center gap-3 text-amber-700 font-medium"><i data-lucide="home"></i> Dashboard</a></li>
-      <li><a href="/enter-topic" class="flex items-center gap-3"><i data-lucide="calendar-plus"></i> Enter Topic</a></li>
-      <li><a href="/review-scheduled-topics" class="flex items-center gap-3"><i data-lucide="eye"></i> Review Topics</a></li>
-      <li><a href="/classes" class="flex items-center gap-3 opacity-60"><i data-lucide="folders"></i> My Classes (soon)</a></li>
-    </ul>
-  </div>
-</div>
-{% endblock %}
+          <i
