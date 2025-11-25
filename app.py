@@ -16,7 +16,6 @@ class Topic(db.Model):
     date_added = db.Column(db.Date, nullable=False)
 
 # -------------------- Routes --------------------
-
 @app.route('/')
 def dashboard():
     return render_template('dashboard.html')
@@ -91,4 +90,5 @@ def init_db():
 # -------------------- Main --------------------
 
 if __name__ == '__main__':
+
     app.run(host='0.0.0.0', port=5000, debug=True)
