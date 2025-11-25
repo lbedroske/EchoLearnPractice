@@ -50,36 +50,21 @@ def enter_missing_topic():
             return f"Error: {e}", 500
     return render_template('enter_missing_topic.html')
 
-@app.route('/review-topics')
+@app.route('/review_topics')
 def review_topics():
-    today = date.today()
-    recent_date = today - timedelta(days=3)
-    medium_date = today - timedelta(days=14)
-    long_date = today - timedelta(days=35)
-
-    recent = Topic.query.filter(
-        and_(
-            Topic.date_added >= recent_date,
-            Topic.date_added < recent_date + timedelta(days=1)
-        )
-    ).all()
-
-    medium = Topic.query.filter(
-        and_(
-            Topic.date_added >= medium_date,
-            Topic.date_added < medium_date + timedelta(days=1)
-        )
-    ).all()
-
-    long = Topic.query.filter(
-        and_(
-            Topic.date_added >= long_date,
-            Topic.date_added < long_date + timedelta(days=1)
-        )
-    ).all()
-
-    return render_template('review_topics.html', recent=recent, medium=medium, long=long)
-    
+    try:
+        # Try to get today's scheduled topics (your existing logic)
+        today = datetime.today().date()
+        topics_to_review = Topic.query.filter(
+            Topic.next_review_date <= today
+        ).all()
+        
+        return render_template('review_topics.html', topics=topics_to_review)
+        
+    except Exception as e:
+        # This catches: no table yet, no topics, or any other error
+        return render_template('review_topics.html', topics=[], error_message="Nothing to review today — come back tomorrow or add some topics!")
+        
 @app.route('/classes')
 def classes():
     return render_template('classes.html')
@@ -96,4 +81,5 @@ def init_db():
 if __name__ == '__main__':
 
     app.run(host='0.0.0.0', port=5000, debug=True)
+
 
