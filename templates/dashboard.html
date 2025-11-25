@@ -24,8 +24,66 @@
         <li><a href="/enter-topic" class="flex items-center gap-3 px-4 py-3 hover:bg-amber-50 rounded-lg transition">
           <i data-lucide="calendar-plus"></i> Enter Topic
         </a></li>
-        <li><a href="/review-scheduled-topics" class="flex items-center gap-3 px-4 py-3 hover:bg-amber-50 rounded-lg transition">
+        <li><a href="/review_topics" class="flex items-center gap-3 px-4 py-3 hover:bg-amber-50 rounded-lg transition">
           <i data-lucide="eye"></i> Review Topics
         </a></li>
         <li><a href="/classes" class="flex items-center gap-3 px-4 py-3 hover:bg-amber-50 rounded-lg transition opacity-60">
-          <i
+          <i data-lucide="folders"></i> My Classes (soon)
+        </a></li>
+      </ul>
+    </nav>
+  </aside>
+
+  <!-- Main Content -->
+  <main class="flex-1 p-6 md:p-12 bg-stone-50 min-h-screen">
+    <!-- Mobile Header -->
+    <div class="md:hidden flex items-center justify-between mb-8">
+      <button onclick="document.getElementById('mobile-menu').classList.toggle('hidden')" class="p-3 rounded-lg hover:bg-amber-50">
+        <i data-lucide="menu" class="w-7 h-7"></i>
+      </button>
+      <h1 class="text-2xl font-bold text-gray-800">EchoLearn</h1>
+      <div class="w-10"></div>
+    </div>
+
+    <!-- 2×2 Grid — perfect on mobile, no scrolling -->
+    <div class="grid grid-cols-2 gap-5 md:gap-10 max-w-5xl mx-auto px-2 md:px-0">
+      <a href="/enter-topic" class="group block p-6 md:p-10 bg-gradient-to-br from-cyan-500 to-blue-600 rounded-2xl shadow-xl text-white hover:shadow-2xl transition-all">
+        <i data-lucide="calendar-plus" class="w-10 h-10 md:w-14 md:h-14 mb-3"></i>
+        <h3 class="text-lg md:text-2xl font-bold">Enter Topic</h3>
+        <p class="text-xs md:text-sm opacity-90 mt-1">Log today’s concept</p>
+      </a>
+
+      <a href="/review_topics" class="group block p-6 md:p-10 bg-gradient-to-br from-orange-500 to-red-600 rounded-2xl shadow-xl text-white hover:shadow-2xl transition-all">
+        <i data-lucide="eye" class="w-10 h-10 md:w-14 md:h-14 mb-3"></i>
+        <h3 class="text-lg md:text-2xl font-bold">Review Topics</h3>
+        <p class="text-xs md:text-sm opacity-90 mt-1">Practice what’s due</p>
+      </a>
+
+      <a href="/enter-missing-topic" class="group block p-6 md:p-10 bg-gradient-to-br from-emerald-500 to-teal-600 rounded-2xl shadow-xl text-white hover:shadow-2xl transition-all">
+        <i data-lucide="clock" class="w-10 h-10 md:w-14 md:h-14 mb-3"></i>
+        <h3 class="text-lg md:text-2xl font-bold">Add Past Topic</h3>
+        <p class="text-xs md:text-sm opacity-90 mt-1">Backfill a missed one</p>
+      </a>
+
+      <a href="/classes" class="group block p-6 md:p-10 bg-gradient-to-br from-purple-600 to-pink-600 rounded-2xl shadow-xl text-white hover:shadow-2xl transition-all opacity-85">
+        <i data-lucide="folders" class="w-10 h-10 md:w-14 md:h-14 mb-3"></i>
+        <h3 class="text-lg md:text-2xl font-bold">My Classes</h3>
+        <p class="text-xs md:text-sm opacity-90 mt-1">Coming very soon</p>
+      </a>
+    </div>
+  </main>
+</div>
+
+<!-- Mobile Menu -->
+<div id="mobile-menu" class="fixed inset-0 bg-black/50 z-50 hidden md:hidden" onclick="this.classList.add('hidden')">
+  <div class="bg-white w-72 h-full p-6" onclick="event.stopPropagation()">
+    <h2 class="font-bold text-xl mb-8">EchoLearn</h2>
+    <ul class="space-y-5 text-lg">
+      <li><a href="/" class="flex items-center gap-3 text-amber-700 font-medium"><i data-lucide="home"></i> Dashboard</a></li>
+      <li><a href="/enter-topic" class="flex items-center gap-3"><i data-lucide="calendar-plus"></i> Enter Topic</a></li>
+      <li><a href="/review_topics" class="flex items-center gap-3"><i data-lucide="eye"></i> Review Topics</a></li>
+      <li><a href="/classes" class="flex items-center gap-3 opacity-60"><i data-lucide="folders"></i> My Classes (soon)</a></li>
+    </ul>
+  </div>
+</div>
+{% endblock %}
