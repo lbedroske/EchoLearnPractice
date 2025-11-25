@@ -79,6 +79,10 @@ def review_topics():
     ).all()
 
     return render_template('review_topics.html', recent=recent, medium=medium, long=long)
+    
+@app.route('/classes')
+def classes():
+    return render_template('classes.html')
 
 # -------------------- Init Route --------------------
 
@@ -92,3 +96,4 @@ def init_db():
 if __name__ == '__main__':
 
     app.run(host='0.0.0.0', port=5000, debug=True)
+
