@@ -1,58 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Review Scheduled Topics</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-</head>
-<body>
-    <h1>Review Scheduled Topics</h1>
+{% extends "base.html" %}
+{% block title %}Review Topics{% endblock %}
 
-    <h2 class="recent">Topics from 3 Days Ago</h2>
-    {% if recent %}
-        <ul>
-        {% for topic in recent %}
-            <li><strong>{{ topic.title }}</strong> — {{ topic.description or "No description" }}</li>
-        {% endfor %}
-        </ul>
-    {% else %}
-        <p>No topics to review from 3 days ago.</p>
-    {% endif %}
-
-    <h2 class="medium">Topics from 14 Days Ago</h2>
-    {% if medium %}
-        <ul>
-        {% for topic in medium %}
-            <li><strong>{{ topic.title }}</strong> — {{ topic.description or "No description" }}</li>
-        {% endfor %}
-        </ul>
-    {% else %}
-        <p>No topics to review from 14 days ago.</p>
-    {% endif %}
-
-    <h2 class="long">Topics from 35 Days Ago</h2>
-    {% if long %}
-        <ul>
-        {% for topic in long %}
-            <li><strong>{{ topic.title }}</strong> — {{ topic.description or "No description" }}</li>
-        {% endfor %}
-        </ul>
-    {% else %}
-        <p>No topics to review from 35 days ago.</p>
-    {% endif %}
-
-    <div class="menu-stack small-menu">
-        <a class="menu-option new-topic" href="/enter-topic">
-            📝 <strong>Enter New Topic</strong><br>
-            <span>Log today’s concept for spaced review.</span>
-        </a>
-        <a class="menu-option missing-topic" href="/enter-missing-topic">
-            ⏳ <strong>Add Missing Topic</strong><br>
-            <span>Backfill a topic with a custom date.</span>
-        </a>
-    </div>
-
-    <a class="floating-back" href="/">← Back to Dashboard</a>
-</body>
-</html>
+{% block content %}
+<div class="flex-1 p-8 bg-stone-50 min-h-screen">
+  <div class="max-w-2xl mx-auto text-center pt-20">
+    <i data-lucide="construction" class="w-24 h-24 text-amber-500 mx-auto mb-6"></i>
+    <h1 class="text-4xl font-bold text-gray-800 mb-4">Review Topics</h1>
+    <p class="text-xl text-gray-600 mb-8">This page is being rebuilt with the new design</p>
+    <p class="text-gray-500">It’ll be beautiful — coming soon!</p>
+    <a href="/" class="inline-block mt-10 px-8 py-4 bg-amber-600 text-white rounded-full font-bold hover:bg-amber-700 transition text-lg">
+      ← Back to Dashboard
+    </a>
+  </div>
+</div>
+{% endblock %}
