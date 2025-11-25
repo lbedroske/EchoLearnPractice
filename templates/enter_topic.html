@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enter New Topic</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Enter a New Topic</h1>
+
+    <form method="POST">
+        <label for="title">Topic Title:</label>
+        <input type="text" id="title" name="title" required>
+
+        <label for="description">Description (optional):</label>
+        <textarea id="description" name="description"></textarea>
+
+        <button type="submit">Save Topic</button>
+    </form>
+
+    <div class="menu-stack small-menu">
+        <a class="menu-option review-topics" href="/review-topics">
+            📅 <strong>Review Scheduled Topics</strong><br>
+            <span>See what’s due for review today.</span>
+        </a>
+        <a class="menu-option missing-topic" href="/enter-missing-topic">
+            ⏳ <strong>Add Missing Topic</strong><br>
+            <span>Backfill a topic with a custom date.</span>
+        </a>
+    </div>
+
+    <a class="floating-back" href="/">← Back to Dashboard</a>
+</body>
+</html>

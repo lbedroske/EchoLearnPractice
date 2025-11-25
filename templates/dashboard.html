@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EchoLearn Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Welcome to EchoLearn</h1>
+
+    <div class="menu-stack">
+        <a class="menu-option new-topic" href="/enter-topic">
+            📝 <strong>Enter New Topic</strong><br>
+            <span>Log today’s concept for spaced review.</span>
+        </a>
+
+        <a class="menu-option review-topics" href="/review-topics">
+            📅 <strong>Review Scheduled Topics</strong><br>
+            <span>See what’s due for review today.</span>
+        </a>
+
+        <a class="menu-option missing-topic" href="/enter-missing-topic">
+            ⏳ <strong>Add Missing Topic</strong><br>
+            <span>Backfill a topic with a custom date.</span>
+        </a>
+    </div>
+</body>
+</html>

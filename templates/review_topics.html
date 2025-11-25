@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Review Scheduled Topics</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Review Scheduled Topics</h1>
+
+    <h2 class="recent">Topics from 3 Days Ago</h2>
+    {% if recent %}
+        <ul>
+        {% for topic in recent %}
+            <li><strong>{{ topic.title }}</strong> — {{ topic.description or "No description" }}</li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>No topics to review from 3 days ago.</p>
+    {% endif %}
+
+    <h2 class="medium">Topics from 14 Days Ago</h2>
+    {% if medium %}
+        <ul>
+        {% for topic in medium %}
+            <li><strong>{{ topic.title }}</strong> — {{ topic.description or "No description" }}</li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>No topics to review from 14 days ago.</p>
+    {% endif %}
+
+    <h2 class="long">Topics from 35 Days Ago</h2>
+    {% if long %}
+        <ul>
+        {% for topic in long %}
+            <li><strong>{{ topic.title }}</strong> — {{ topic.description or "No description" }}</li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>No topics to review from 35 days ago.</p>
+    {% endif %}
+
+    <div class="menu-stack small-menu">
+        <a class="menu-option new-topic" href="/enter-topic">
+            📝 <strong>Enter New Topic</strong><br>
+            <span>Log today’s concept for spaced review.</span>
+        </a>
+        <a class="menu-option missing-topic" href="/enter-missing-topic">
+            ⏳ <strong>Add Missing Topic</strong><br>
+            <span>Backfill a topic with a custom date.</span>
+        </a>
+    </div>
+
+    <a class="floating-back" href="/">← Back to Dashboard</a>
+</body>
+</html>
