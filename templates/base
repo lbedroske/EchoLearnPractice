@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full">
+<head>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}EchoLearn{% endblock %} • Smart Review</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/lucide/0.263.1/lucide.min.css" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <style>
+    .lucide { width: 20px; height:20px; }
+  </style>
+</head>
+<body class="min-h-screen bg-stone-50 text-gray-900 flex">
+  {% block content %}{% endblock %}
+
+  <script>
+    lucide.createIcons();
+  </script>
+</body>
+</html>
