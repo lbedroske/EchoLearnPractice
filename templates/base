@@ -3,18 +3,17 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>{% block title %}EchoLearn{% endblock %}</title>
+  <title>{% block title %}EchoLearn{% endblock %} • Smart Review</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
   <style>
-    [data-lucide] { width: 1.25rem; height: 1.25rem; }
-    @media (min-width: 768px) {
-      [data-lucide] { width: 1.4rem; height: 1.4rem; }
-    }
+    [data-lucide] { width: 1.4rem; height: 1.4rem; }
   </style>
 </head>
 <body class="min-h-screen bg-stone-50 text-gray-900 flex flex-col">
   {% block content %}{% endblock %}
-  <script>lucid.createIcons();</script>
+  <script>
+    lucide.createIcons();
+  </script>
 </body>
 </html>
