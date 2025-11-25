@@ -1,29 +1,106 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EchoLearn Dashboard</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-</head>
-<body>
-    <h1>Welcome to EchoLearn</h1>
+{% extends "base.html" %}
 
-    <div class="menu-stack">
-        <a class="menu-option new-topic" href="/enter-topic">
-            📝 <strong>Enter New Topic</strong><br>
-            <span>Log today’s concept for spaced review.</span>
-        </a>
+{% block title %}Dashboard{% endblock %}
 
-        <a class="menu-option review-topics" href="/review-topics">
-            📅 <strong>Review Scheduled Topics</strong><br>
-            <span>See what’s due for review today.</span>
-        </a>
-
-        <a class="menu-option missing-topic" href="/enter-missing-topic">
-            ⏳ <strong>Add Missing Topic</strong><br>
-            <span>Backfill a topic with a custom date.</span>
-        </a>
+{% block content %}
+<!-- SIDEBAR -->
+<aside class="w-64 bg-white border-r border-amber-100 flex flex-col hidden md:flex">
+  <div class="p-6 border-b border-amber-100">
+    <div class="flex items-center gap-3">
+      <div class="w-10 h-10 bg-gradient-to-br from-amber-500 to-orange-500 rounded-xl flex items-center justify-center shadow-lg">
+        <i data-lucide="book-open" class="w-6 h-6 text-white"></i>
+      </div>
+      <div>
+        <h2 class="font-bold text-gray-900">EchoLearn</h2>
+        <p class="text-xs text-amber-600">Smart Spaced Review</p>
+      </div>
     </div>
-</body>
-</html>
+  </div>
+
+  <nav class="flex-1 p-4">
+    <ul class="space-y-2">
+      <li>
+        <a href="/" class="flex items-center gap-3 px-4 py-3 rounded-lg bg-amber-50 text-amber-700 font-medium">
+          <i data-lucide="home" class="w-5 h-5"></i>
+          <span>Dashboard</span>
+        </a>
+      </li>
+      <li>
+        <a href="/classes" class="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-amber-50 hover:text-amber-700 transition">
+          <i data-lucide="folders" class="w-5 h-5"></i>
+          <span>My Classes</span>
+        </a>
+      </li>
+      <li>
+        <a href="/enter-topic" class="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-amber-50 hover:text-amber-700 transition">
+          <i data-lucide="calendar-plus" class="w-5 h-5"></i>
+          <span>Enter Topic</span>
+        </a>
+      </li>
+      <li>
+        <a href="/review-scheduled-topics" class="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-amber-50 hover:text-amber-700 transition">
+          <i data-lucide="eye" class="w-5 h-5"></i>
+          <span>Review Topics</span>
+        </a>
+      </li>
+    </ul>
+  </nav>
+</aside>
+
+<!-- MAIN CONTENT -->
+<main class="flex-1 p-8 md:p-10">
+  <!-- Mobile Menu Button -->
+  <div class="md:hidden flex items-center justify-between mb-6">
+    <button onclick="document.getElementById('mobile-menu').classList.toggle('hidden')"
+            class="p-2 rounded-lg hover:bg-amber-50">
+      <i data-lucide="menu" class="w-6 h-6"></i>
+    </button>
+    <h1 class="text-2xl font-bold">EchoLearn</h1>
+  </div>
+
+  <!-- 2x2 GRID -->
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+    <!-- Card 1 -->
+    <a href="/enter-topic" class="block p-10 bg-gradient-to-br from-cyan-400 to-blue-500 rounded-2xl shadow-xl text-white hover:scale-105 transition transform">
+      transform duration-300">
+      <i data-lucide="calendar-plus" class="w-12 h-12 mb-4"></i>
+      <h3 class="text-2xl font-bold mb-2">Enter New Topic</h3>
+      <p class="opacity-90">Add today's concept to your spaced review schedule</p>
+    </a>
+
+    <!-- Card 2 -->
+    <a href="/review-scheduled-topics" class="block p-10 bg-gradient-to-br from-orange-400 to-red-500 rounded-2xl shadow-xl text-white hover:scale-105 transition">
+      <i data-lucide="eye" class="w-12 h-12 mb-4"></i>
+      <h3 class="text-2xl font-bold mb-2">Review Topics</h3>
+      <p class="opacity-90">Practice topics due today using smart spacing</p>
+    </a>
+
+    <!-- Card 3 -->
+    <a href="/enter-missing-topic" class="block p-10 bg-gradient-to-br from-emerald-400 to-teal-600 rounded-2xl shadow-xl text-white hover:scale-105 transition">
+      <i data-lucide="clock" class="w-12 h-12 mb-4"></i>
+      <h3 class="text-2xl font-bold mb-2">Add Past Topic</h3>
+      <p class="opacity-90">Backfill a missed topic with a custom date</p>
+    </a>
+
+    <!-- Card 4 — Future: Classes -->
+    <a href="/classes" class="block p-10 bg-gradient-to-br from-purple-500 to-pink-500 rounded-2xl shadow-xl text-white hover:scale-105 transition opacity-80">
+      <i data-lucide="folders" class="w-12 h-12 mb-4"></i>
+      <h3 class="text-2xl font-bold mb-2">My Classes</h3>
+      <p class="opacity-90">Manage multiple classes • Coming soon</p>
+    </a>
+  </div>
+
+  <!-- Mobile Menu Overlay -->
+  <div id="mobile-menu" class="fixed inset-0 bg-black/50 z-50 hidden md:hidden" onclick="this.classList.add('hidden')">
+    <div class="bg-white w-64 h-full p-6" onclick="event.stopPropagation()">
+      <h2 class="font-bold text-xl mb-8">EchoLearn</h2>
+      <ul class="space-y-4">
+        <li><a href="/" class="flex items-center gap-3 text-amber-700 font-medium"><i data-lucide="home"></i> Dashboard</a></li>
+        <li><a href="/enter-topic" class="flex items-center gap-3"><i data-lucide="calendar-plus"></i> Enter Topic</a></li>
+        <li><a href="/review-scheduled-topics" class="flex items-center gap-3"><i data-lucide="eye"></i> Review Topics</a></li>
+        <li><a href="/classes" class="flex items-center gap-3"><i data-lucide="folders"></i> My Classes</a></li>
+      </ul>
+    </div>
+  </div>
+</main>
+{% endblock %}
