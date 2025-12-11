@@ -16,6 +16,10 @@ app.config['SQLALCHEMY_DATABASE_URI'] = database_url
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
+# Auto-initialize database tables on startup
+with app.app_context():
+    db.create_all()
+
 # -------------------- Models --------------------
 class Topic(db.Model):
     id = db.Column(db.Integer, primary_key=True)
