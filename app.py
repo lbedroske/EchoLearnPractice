@@ -139,6 +139,34 @@ def init_db():
     db.create_all()
     return "Database initialized!"
 
+@app.route('/migrate-db')
+def migrate_db():
+    """Add next_review_date column to existing topics if it doesn't exist"""
+    try:
+        from sqlalchemy import inspect, text
+        
+        inspector = inspect(db.engine)
+        columns = [col['name'] for col in inspector.get_columns('topic')]
+        
+        if 'next_review_date' not in columns:
+            # Add the column
+            with db.engine.connect() as conn:
+                conn.execute(text('ALTER TABLE topic ADD COLUMN next_review_date DATE'))
+                conn.commit()
+            
+            # Set initial review dates for existing topics
+            topics = Topic.query.all()
+            for topic in topics:
+                if not topic.next_review_date:
+                    topic.next_review_date = datetime.today().date() + timedelta(days=1)
+            db.session.commit()
+            
+            return "Database migrated successfully! next_review_date column added."
+        else:
+            return "Database already has next_review_date column. No migration needed."
+    except Exception as e:
+        return f"Migration error: {str(e)}"
+
 # -------------------- Main --------------------
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000, debug=True)
