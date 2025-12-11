@@ -1,9 +1,19 @@
 from flask import Flask, render_template, request, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime, timedelta
+import os
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///topics.db'
+
+# Use PostgreSQL on Render, SQLite locally
+database_url = os.environ.get('DATABASE_URL', 'sqlite:///topics.db')
+
+# Fix for Render's postgres:// vs postgresql:// issue
+if database_url and database_url.startswith('postgres://'):
+    database_url = database_url.replace('postgres://', 'postgresql://', 1)
+
+app.config['SQLALCHEMY_DATABASE_URI'] = database_url
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
 # -------------------- Models --------------------
